@@ -1,0 +1,103 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CounterApp.Models"
+             x:Class="CounterApp.Views.CounterPage">
+    <ContentPage.BindingContext>
+        <models:Counter/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <HorizontalStackLayout
+            Grid.Row="0"
+            HorizontalOptions="Center" 
+            VerticalOptions="Start" 
+            Margin="0,20,0,0">
+
+            <Editor 
+                x:Name="CounterTitle"
+                WidthRequest="300" 
+                Placeholder="Enter title..." 
+                HeightRequest="50"
+                FontSize="18"
+                Margin="0,0,10,0"/>
+
+            <Button 
+                HeightRequest="50" 
+                WidthRequest="100"
+                Text="Add" 
+                FontSize="16"
+                Margin="5"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="10"
+                Clicked="OnCounterAdd_Clicked"/>
+        </HorizontalStackLayout>
+
+        <Label Text="{Binding CounterValue}" 
+               FontSize="30" 
+               TextColor="Black"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Grid.Row="1"/>
+
+        <CollectionView Grid.Row="2"
+                Margin="10"
+                BackgroundColor="#313131"
+                SelectionMode="None"
+                x:Name="CounterCollection"
+                ItemsSource="{Binding Counters}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" BackgroundColor="White" ColumnSpacing="10" WidthRequest="700">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Title}" 
+                       FontSize="24" 
+                       TextColor="Black"
+                       Grid.Column="0"
+                       VerticalOptions="Center"/>
+
+                        <Label Text="{Binding Value}" 
+                       FontSize="24" 
+                       TextColor="Black"
+                       Grid.Column="1"
+                       VerticalOptions="Center"/>
+
+                        <Button Text="+" 
+                        WidthRequest="50" 
+                        HeightRequest="50" 
+                        Grid.Column="2"
+                        FontSize="20"
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        Clicked="OnIncrement_Clicked"
+                        BindingContext="{Binding}" />
+
+                        <Button Text="-" 
+                        WidthRequest="50" 
+                        HeightRequest="50" 
+                        Grid.Column="3"
+                        FontSize="20"
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        Clicked="OnDecrement_Clicked"
+                        BindingContext="{Binding}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
