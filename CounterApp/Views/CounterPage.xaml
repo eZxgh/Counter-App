@@ -44,13 +44,6 @@
                 Clicked="OnCounterAdd_Clicked"/>
         </HorizontalStackLayout>
 
-        <Label Text="{Binding CounterValue}" 
-               FontSize="30" 
-               TextColor="Black"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               Grid.Row="1"/>
-
         <CollectionView Grid.Row="2"
                 Margin="10"
                 BackgroundColor="#313131"
@@ -89,8 +82,7 @@
                         FontSize="20"
                         BackgroundColor="Black"
                         TextColor="White"
-                        Clicked="OnIncrement_Clicked"
-                        BindingContext="{Binding}" />
+                        Clicked="OnIncrement_Clicked"/>
 
                         <Button Text="-" 
                         WidthRequest="50" 
@@ -99,8 +91,7 @@
                         FontSize="20"
                         BackgroundColor="Black"
                         TextColor="White"
-                        Clicked="OnDecrement_Clicked"
-                        BindingContext="{Binding}" />
+                        Clicked="OnDecrement_Clicked"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
